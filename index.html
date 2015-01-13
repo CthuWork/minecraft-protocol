@@ -1,65 +1,202 @@
-<!doctype html>
+<!DOCTYPE html>
 <!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
 <!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
-  <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+ <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen" />
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css" />
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script type="text/javascript" src="javascripts/script.js"></script>
-
   <title>Minecraft Protocol</title>
-  <meta name="description" content="http://wiki.vg/Protocol 中文翻译">
-
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-
-</head>
-
-<body>
-
+  <meta name="description" content="http://wiki.vg/Protocol 中文翻译" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+ </head>
+ <body>
   <div class="wrapper">
-    <header>
-      <h1 class="title">Minecraft Protocol</h1>
-    </header>
-    <div id="container">
-      <p class="tagline">http://wiki.vg/Protocol 中文翻译</p>
-      <div id="main" role="main">
-        <div class="download-bar">
-        <div class="inner">
-          <a href="https://github.com/CthuWork/minecraft-protocol" class="code">View minecraft-protocol on GitHub</a>
-        </div>
-        <span class="blc"></span><span class="trc"></span>
-        </div>
-        <article class="markdown-body">
-
-            <h1>目录</h1>
-            <hr/>
-            <ul>
-                <li><ol><li><a href="https://www.zybuluo.com/Bluek404/note/62868" target="_blank">类型定义</a></li></ol></li>
-            </ul>
-
-        </article>
+   <header>
+    <h1 class="title">Minecraft Protocol</h1>
+   </header>
+   <div id="container">
+    <p class="tagline">http://wiki.vg/Protocol 中文翻译</p>
+    <div id="main" role="main">
+     <div class="download-bar">
+      <div class="inner">
+       <a href="https://github.com/CthuWork/minecraft-protocol" class="code">View minecraft-protocol on GitHub</a>
       </div>
+      <span class="blc"></span>
+      <span class="trc"></span>
+     </div>
+     <article class="markdown-body">
+      <h1>目录</h1>
+      <hr />
+      <ul data-anchor-id="cxyp">
+       <li><a href="https://github.com/CthuWork/minecraft-protocol/blob/master/definitions.md">1 类型定义 </a><br /> 
+        <ul>
+         <li>1.1 Data types</li>
+         <li>1.2 Position</li>
+         <li>1.3 Fixed-point numbers</li>
+         <li>1.4 Other definitions</li>
+        </ul></li>
+       <li>2 Packets <br />
+        <ul>
+         <li>2.1 Protocol Version</li>
+        </ul></li>
+       <li>3 Packet format <br />
+        <ul>
+         <li>3.1 Post compression</li>
+        </ul></li>
+       <li>4 Handshaking <br />
+        <ul>
+         <li>4.1 Serverbound</li>
+         <li>4.1.1 Handshake</li>
+        </ul></li>
+       <li>5 Play <br />
+        <ul>
+         <li>5.1 Clientbound</li>
+         <li>5.1.1 Keep Alive</li>
+         <li>5.1.2 Join Game</li>
+         <li>5.1.3 Chat Message</li>
+         <li>5.1.4 Time Update</li>
+         <li>5.1.5 Entity Equipment</li>
+         <li>5.1.6 Spawn Position</li>
+         <li>5.1.7 Update Health</li>
+         <li>5.1.8 Respawn</li>
+         <li>5.1.9 Player Position And Look</li>
+         <li>5.1.10 Held Item Change</li>
+         <li>5.1.11 Use Bed</li>
+         <li>5.1.12 Animation</li>
+         <li>5.1.13 Spawn Player</li>
+         <li>5.1.14 Collect Item</li>
+         <li>5.1.15 Spawn Object</li>
+         <li>5.1.16 Spawn Mob</li>
+         <li>5.1.17 Spawn Painting</li>
+         <li>5.1.18 Spawn Experience Orb</li>
+         <li>5.1.19 Entity Velocity</li>
+         <li>5.1.20 Destroy Entities</li>
+         <li>5.1.21 Entity</li>
+         <li>5.1.22 Entity Relative Move</li>
+         <li>5.1.23 Entity Look</li>
+         <li>5.1.24 Entity Look and Relative Move</li>
+         <li>5.1.25 Entity Teleport</li>
+         <li>5.1.26 Entity Head Look</li>
+         <li>5.1.27 Entity Status</li>
+         <li>5.1.28 Attach Entity</li>
+         <li>5.1.29 Entity Metadata</li>
+         <li>5.1.30 Entity Effect</li>
+         <li>5.1.31 Remove Entity Effect</li>
+         <li>5.1.32 Set Experience</li>
+         <li>5.1.33 Entity Properties</li>
+         <li>5.1.34 Chunk Data</li>
+         <li>5.1.35 Multi Block Change</li>
+         <li>5.1.36 Block Change</li>
+         <li>5.1.37 Block Action</li>
+         <li>5.1.38 Block Break Animation</li>
+         <li>5.1.39 Map Chunk Bulk</li>
+         <li>5.1.40 Explosion</li>
+         <li>5.1.41 Effect <br />
+          <ul>
+           <li>5.1.41.1 Effects</li>
+          </ul></li>
+         <li>5.1.42 Sound Effect</li>
+         <li>5.1.43 Particle</li>
+         <li>5.1.44 Change Game State</li>
+         <li>5.1.45 Spawn Global Entity</li>
+         <li>5.1.46 Open Window</li>
+         <li>5.1.47 Close Window</li>
+         <li>5.1.48 Set Slot</li>
+         <li>5.1.49 Window Items</li>
+         <li>5.1.50 Window Property</li>
+         <li>5.1.51 Confirm Transaction</li>
+         <li>5.1.52 Update Sign</li>
+         <li>5.1.53 Maps</li>
+         <li>5.1.54 Update Block Entity</li>
+         <li>5.1.55 Sign Editor Open</li>
+         <li>5.1.56 Statistics</li>
+         <li>5.1.57 Player List Item</li>
+         <li>5.1.58 Player Abilities</li>
+         <li>5.1.59 Tab-Complete</li>
+         <li>5.1.60 Scoreboard Objective</li>
+         <li>5.1.61 Update Score</li>
+         <li>5.1.62 Display Scoreboard</li>
+         <li>5.1.63 Teams</li>
+         <li>5.1.64 Plugin Message</li>
+         <li>5.1.65 Disconnect</li>
+         <li>5.1.66 Server Difficulty</li>
+         <li>5.1.67 Combat Event</li>
+         <li>5.1.68 Camera</li>
+         <li>5.1.69 World Border</li>
+         <li>5.1.70 Title</li>
+         <li>5.1.71 Set Compression</li>
+         <li>5.1.72 Player List Header/Footer</li>
+         <li>5.1.73 Resource Pack Send</li>
+         <li>5.1.74 Update Entity NBT</li>
+         <li>5.2 Serverbound</li>
+         <li>5.2.1 Keep Alive</li>
+         <li>5.2.2 Chat Message</li>
+         <li>5.2.3 Use Entity</li>
+         <li>5.2.4 Player</li>
+         <li>5.2.5 Player Position</li>
+         <li>5.2.6 Player Look</li>
+         <li>5.2.7 Player Position And Look</li>
+         <li>5.2.8 Player Digging</li>
+         <li>5.2.9 Player Block Placement</li>
+         <li>5.2.10 Held Item Change</li>
+         <li>5.2.11 Animation</li>
+         <li>5.2.12 Entity Action</li>
+         <li>5.2.13 Steer Vehicle</li>
+         <li>5.2.14 Close Window</li>
+         <li>5.2.15 Click Window</li>
+         <li>5.2.16 Confirm Transaction</li>
+         <li>5.2.17 Creative Inventory Action</li>
+         <li>5.2.18 Enchant Item</li>
+         <li>5.2.19 Update Sign</li>
+         <li>5.2.20 Player Abilities</li>
+         <li>5.2.21 Tab-Complete</li>
+         <li>5.2.22 Client Settings</li>
+         <li>5.2.23 Client Status</li>
+         <li>5.2.24 Plugin Message</li>
+         <li>5.2.25 Spectate</li>
+         <li>5.2.26 Resource Pack Status</li>
+        </ul></li>
+       <li>6 Status <br />
+        <ul>
+         <li>6.1 Clientbound</li>
+         <li>6.1.1 Response</li>
+         <li>6.1.2 Ping</li>
+         <li>6.2 Serverbound</li>
+         <li>6.2.1 Request</li>
+         <li>6.2.2 Ping</li>
+        </ul></li>
+       <li>7 Login <br />
+        <ul>
+         <li>7.1 Clientbound</li>
+         <li>7.1.1 Disconnect</li>
+         <li>7.1.2 Encryption Request</li>
+         <li>7.1.3 Login Success</li>
+         <li>7.1.4 Set Compression</li>
+         <li>7.2 Serverbound</li>
+         <li>7.2.1 Login Start</li>
+         <li>7.2.2 Encryption Response</li>
+        </ul></li>
+       <li>8 See Also</li>
+      </ul>
+     </article>
     </div>
-    <footer>
-      <div class="owner">
-      <p><a href="https://github.com/CthuWork" class="avatar"><img src="https://avatars1.githubusercontent.com/u/8712289?v=3&amp;s=60" width="48" height="48"></a> <a href="https://github.com/CthuWork">CthuWork</a> maintains <a href="https://github.com/CthuWork/minecraft-protocol">minecraft-protocol</a></p>
-
-
-      </div>
-      <div class="creds">
-        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
-      </div>
-    </footer>
+   </div>
+   <footer>
+    <div class="owner">
+     <p><a href="https://github.com/CthuWork" class="avatar"><img src="https://avatars1.githubusercontent.com/u/8712289?v=3&amp;s=60" width="48" height="48" /></a> <a href="https://github.com/CthuWork">CthuWork</a> maintains <a href="https://github.com/CthuWork/minecraft-protocol">minecraft-protocol</a></p>
+    </div>
+    <div class="creds">
+     <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br />theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+    </div>
+   </footer>
   </div>
   <div class="current-section">
-    <a href="#top">Scroll to top</a>
-    <p class="name"></p>
+   <a href="#top">Scroll to top</a>
+   <p class="name"></p>
   </div>
-
-
-</body>
+ </body>
 </html>
