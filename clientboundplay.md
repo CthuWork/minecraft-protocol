@@ -307,3 +307,377 @@
 **非法的维度(Dimension)客户端崩溃**
 
 **避免更改玩家的维度到他们原来所在的维度，将会出现奇怪的错误：比如这些玩家将无法攻击其他的玩家（在死亡重生后恢复）**
+
+##玩家坐标和视点
+　　更新玩家在服务器上的坐标。如果服务器上次已知的玩家坐标和最新发送的数据包的数据的坐标位置相差超过100单位的话，将导致玩家因“移动速度太快 :( (使用作弊器?)”而提出服务器。一般来说如果定点小数的X轴或Z轴的值大于3.2E7D将导致客户端被踢出并显示“无效的坐标”。
+　　偏航（yaw）以角度计算，而且会遵循经典三角规则。偏航的圆单位是在XZ平面上以(0,1)为原点绕逆时针旋转，90度为(-1,0)，180度时为(0,-1)，270度时为(1,0)。
+　　另外，偏航的数值不一定要在0到360之间；任意数字都是有效的，包括负数和大于360的数字。
+　　仰角（pitch）是以角度计算，0代表直视前方，-90表示看正上方，而90表示看正下方。
+　　玩家的偏航（以角度计），站在点(x0,y0)并看点(x,z)可以通过以下方式计算：
+　　
+
+     l = x-x0
+     w = z-z0
+     c = sqrt( l*l + w*w )
+     alpha1 = -arcsin(l/c)/PI*180
+     alpha2 =  arccos(w/c)/PI*180
+     if alpha2 > 90 then
+       yaw = 180 - alpha1
+     else
+       yaw = alpha1
+
+你可以从以下方式通过所给的仰角/偏航而得到向量值：
+
+     x = -cos(pitch) * sin(yaw)
+     y = -sin(pitch)
+     z =  cos(pitch) * cos(yaw)
+
+关于标记字段：
+
+     <Dinnerbone> It's a bitfield, X/Y/Z/Y_ROT/X_ROT. If X is set, the x value is relative and not absolute.
+
+
+<table>
+   <tr>
+      <td>包标识符</td>
+      <td>类别</td>
+      <td>绑定到</td>
+      <td>字段名</td>
+      <td>字段类别</td>
+      <td>说明</td>
+      <td></td>
+   </tr>
+   <tr>
+      <td>0x08</td>
+      <td>游戏</td>
+      <td>客户端</td>
+      <td>X</td>
+      <td>Double</td>
+      <td>绝对/相对坐标</td>
+      <td></td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Y</td>
+      <td>Double</td>
+      <td>绝对/相对坐标</td>
+      <td></td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Z</td>
+      <td>Double</td>
+      <td>绝对/相对坐标</td>
+      <td></td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Yaw</td>
+      <td>Float</td>
+      <td>X轴上的绝对/相对方向，角度计</td>
+      <td></td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Pitch</td>
+      <td>Float</td>
+      <td>Y轴上的绝对/相对方向，角度计</td>
+      <td></td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Flags</td>
+      <td>Byte</td>
+      <td>X</td>
+      <td>0x01</td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Y</td>
+      <td>0x02</td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Z</td>
+      <td>0x04</td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Y_ROT</td>
+      <td>0x08</td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>X_ROT</td>
+      <td>0x10</td>
+   </tr>
+   <tr>
+   </tr>
+</table>
+
+##更换手持物品
+发送数据包来改变玩家所选择的物品槽
+
+<table>
+   <tr>
+      <td>包标识符</td>
+      <td>类别</td>
+      <td>绑定到</td>
+      <td>字段名</td>
+      <td>字段类别</td>
+      <td>说明</td>
+   </tr>
+   <tr>
+      <td>0x09</td>
+      <td>游戏</td>
+      <td>客户端</td>
+      <td>Slot</td>
+      <td>Byte</td>
+      <td>玩家所选择的物品槽(0-8)</td>
+   </tr>
+   <tr>
+   </tr>
+</table>
+
+##床的使用
+这个数据包将告诉玩家上床了。
+有匹配的实体ID的客户端将会进入床模式。
+这个数据包将发送给所有附近的玩家（包括已经在床上的玩家）
+<table>
+   <tr>
+      <td>包标识符</td>
+      <td>类别</td>
+      <td>绑定到</td>
+      <td>字段名</td>
+      <td>字段类别</td>
+      <td>说明</td>
+   </tr>
+   <tr>
+      <td>0x0A</td>
+      <td>游戏</td>
+      <td>客户端</td>
+      <td>Entity ID</td>
+      <td>VarInt</td>
+      <td>玩家ID</td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Location</td>
+      <td>Position</td>
+      <td>床头部分的方块的所在位置</td>
+   </tr>
+   <tr>
+      <td></td>
+   </tr>
+</table>
+
+##动作
+发送任何一个实体都将改变动作。
+<table>
+   <tr>
+      <td>包标识符</td>
+      <td>类别</td>
+      <td>绑定到</td>
+      <td>字段名</td>
+      <td>字段类别</td>
+      <td>说明</td>
+   </tr>
+   <tr>
+      <td>0x0B</td>
+      <td>游戏</td>
+      <td>客户端</td>
+      <td>Entity ID</td>
+      <td>VarInt</td>
+      <td>玩家ID</td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Animation</td>
+      <td>Unsigned Byte</td>
+      <td>动作ID</td>
+   </tr>
+   <tr>   </tr>
+</table>
+
+动作ID可以为以下值：
+
+<table>
+   <tr>
+      <td>ID</td>
+      <td>动作</td>
+   </tr>
+   <tr>
+      <td>0</td>
+      <td>挥手</td>
+   </tr>
+   <tr>
+      <td>1</td>
+      <td>伤害动作</td>
+   </tr>
+   <tr>
+      <td>2</td>
+      <td>离开床</td>
+   </tr>
+   <tr>
+      <td>3</td>
+      <td>吃食物</td>
+   </tr>
+   <tr>
+      <td>4</td>
+      <td>Critical effect</td>
+   </tr>
+   <tr>
+      <td>5</td>
+      <td>Magic critical effect</td>
+   </tr>
+   <tr>
+      <td>102</td>
+      <td>(未知）</td>
+   </tr>
+   <tr>
+      <td>104</td>
+      <td>蹲下</td>
+   </tr>
+   <tr>
+      <td>105</td>
+      <td>起立</td>
+   </tr>
+</table>
+
+##生成玩家
+这个包会在玩家到达可见区域发送，**不是**在玩家加入时发送。
+Servers can, however, safely spawn player entities for players not in visible range. The client appears to handle it correctly.
+当服务器的online-mode（正版模式），UUID必须有效而且要有有效的皮肤，在离线模式下需要UUID v3。
+
+      <+Grum> i will never confirm this as a feature you know that :)
+      
+在这个示例UUID,xxxxxxxx-xxxx-Yxxx-xxxx-xxxxxxxxxxxx中，UUID版本是通过Y来指定的。所以对于UUID v3来说，Y的值一直都为3；对UUID v2来说，Y的值一直为2。
+
+<table>
+   <tr>
+      <td>包标识符</td>
+      <td>类别</td>
+      <td>绑定到</td>
+      <td>字段名</td>
+      <td>字段类别</td>
+      <td>说明</td>
+      <td></td>
+   </tr>
+   <tr>
+      <td>0x0C</td>
+      <td>游戏</td>
+      <td>客户端</td>
+      <td>Entity ID</td>
+      <td>VarInt</td>
+      <td>VarInt</td>
+      <td>玩家的实体ID</td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Player UUID</td>
+      <td>UUID</td>
+      <td>UUID</td>
+      <td>玩家的UUID</td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>X</td>
+      <td>Int</td>
+      <td>Int</td>
+      <td>Player X as a Fixed-Point number</td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Y</td>
+      <td>Int</td>
+      <td>Int</td>
+      <td>Player X as a Fixed-Point number</td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Z</td>
+      <td>Int</td>
+      <td>Int</td>
+      <td>Player X as a Fixed-Point number</td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Yaw</td>
+      <td>Byte</td>
+      <td>Byte</td>
+      <td>玩家的方向的压缩字节</td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Pitch</td>
+      <td>Byte</td>
+      <td>Byte</td>
+      <td>玩家的方向的压缩字节</td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Current Item</td>
+      <td>Short</td>
+      <td>Short</td>
+      <td>玩家当前所拿的物体。注意这个当为0意为“没有物体”，不像在其他包中所用的-1那样。负数值将导致客户端崩溃</td>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Metadata</td>
+      <td>Metadata</td>
+      <td>Metadata</td>
+      <td>如果没有metadata发送客户端将崩溃</td>
+   </tr>
+   <tr>
+      <td></td>
+   </tr>
+</table>
+
+
+**如果没有metadata发送客户端将崩溃**
