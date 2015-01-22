@@ -128,3 +128,45 @@ x = val >> 38;
 y = (val >> 26) & 0xFFF
 z = val << 38 >> 38
 ```
+## 定点小数
+一些数据是以[定点小数](https://en.wikipedia.org/wiki/Fixed-point_arithmetic)存储的, where a certain number of bits represents the signed integer part (number to the left of the decimal point) and the rest represents the fractional part (to the right). Floating points (float and double), in contrast, keep the number itself (mantissa) in one chunk, while the location of the decimal point (exponent) is stored beside it.
+
+Essentially, while fixed-point numbers have lower range than floating points, their fractional precision is greater for higher values. This makes them ideal for representing global coordinates of an entity in Minecraft, as it's more important to store the integer part accurately than position them more precisely within a single block (or meter).
+
+Coordinates are often represented as a 32-bit integer, where 5 of the least-significant bits are dedicated to the fractional part, and the rest store the integer part.
+
+Java lacks support for fractional integers directly, but you can represent them as integers. To convert from a double to this integer representation, use the following formulas:
+
+```
+ abs_int = (int)double * 32;
+ ```
+And back again:
+```
+ double = (double)abs_int / 32;
+```
+
+## 协议版本
+
+请查看[协议版本号](http://wiki.vg/Protocol_version_numbers)来获取旧版本的信息。
+
+<table>
+  <tr>
+    <th>Minecraft版本</th>
+    <th>协议版本</th>
+  </tr>
+  <tr>
+    <td>1.8.1</td>
+    <td rowspan="2">47</td>
+  </tr>
+  <tr>
+    <td>1.8</td>
+  </tr>
+  <tr>
+    <td>1.7.6</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>1.7.2</td>
+    <td>4</td>
+  </tr>
+</table>
