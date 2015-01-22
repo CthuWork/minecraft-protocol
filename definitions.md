@@ -131,11 +131,11 @@ z = val << 38 >> 38
 ## 定点小数
 一些数据是以[定点小数](https://en.wikipedia.org/wiki/Fixed-point_arithmetic)存储的, where a certain number of bits represents the signed integer part (number to the left of the decimal point) and the rest represents the fractional part (to the right). Floating points (float and double), in contrast, keep the number itself (mantissa) in one chunk, while the location of the decimal point (exponent) is stored beside it.
 
-Essentially, while fixed-point numbers have lower range than floating points, their fractional precision is greater for higher values. This makes them ideal for representing global coordinates of an entity in Minecraft, as it's more important to store the integer part accurately than position them more precisely within a single block (or meter).
+基本上，定点小数比浮点数有更小的范围，它分数展示对更高的值有利。这使得他们 ideal for representing global coordinates of an entity in Minecraft, as it's more important to store the integer part accurately than position them more precisely within a single block (or meter).
 
-Coordinates are often represented as a 32-bit integer, where 5 of the least-significant bits are dedicated to the fractional part, and the rest store the integer part.
+坐标一般以一个32位整数显示，前面五位是分数部分，剩下存储的是整数部分。
 
-Java lacks support for fractional integers directly, but you can represent them as integers. To convert from a double to this integer representation, use the following formulas:
+Java缺乏对分数整数的支持，但你可以以整数形式显示它们。To convert from a double转为整数形式，可以用以下公式：
 
 ```
  abs_int = (int)double * 32;
