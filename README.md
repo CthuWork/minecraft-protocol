@@ -10,7 +10,7 @@ Minecraft 协议
   * 1.2 [坐标](definitions.md#坐标)
   * 1.3 [定点小数](definitions.md#定点小数)
   * 1.4 [协议版本](definitions.md#协议版本)
-  * 1.5 其他定义
+  * 1.5 [其他定义](definitions.md#其他定义)
 * 2 [数据包格式](packetformat.md)
   * 2.1 [未压缩的封包](packetformat.md#未压缩的封包)
   * 2.2 [压缩的封包](packetformat.md#压缩的封包)
