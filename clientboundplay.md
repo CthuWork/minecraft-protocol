@@ -308,7 +308,7 @@
 
 **避免更改玩家的维度到他们原来所在的维度，将会出现奇怪的错误：比如这些玩家将无法攻击其他的玩家（在死亡重生后恢复）**
 
-##玩家坐标和视点
+##  玩家坐标和视点
 更新玩家在服务器上的坐标。如果服务器上次已知的玩家坐标和最新发送的数据包的数据的坐标位置相差超过100单位的话，将导致玩家因“移动速度太快 :( (使用作弊器?)”而提出服务器。一般来说如果定点小数的X轴或Z轴的值大于3.2E7D将导致客户端被踢出并显示“无效的坐标”。
 
 偏航（yaw）以角度计算，而且会遵循经典三角规则。偏航的圆单位是在XZ平面上以(0,1)为原点绕逆时针旋转，90度为(-1,0)，180度时为(0,-1)，270度时为(1,0)。
@@ -399,7 +399,7 @@
   </tr>
 </table>
 
-##更换手持物品
+##  更换手持物品
 发送数据包来改变玩家所选择的物品槽
 
 <table>
@@ -423,40 +423,35 @@
    </tr>
 </table>
 
-##床的使用
+##  床的使用
 这个数据包将告诉玩家上床了。
 有匹配的实体ID的客户端将会进入床模式。
 这个数据包将发送给所有附近的玩家（包括已经在床上的玩家）
 <table>
-   <tr>
-      <td>包标识符</td>
-      <td>类别</td>
-      <td>绑定到</td>
-      <td>字段名</td>
-      <td>字段类别</td>
-      <td>备注</td>
-   </tr>
-   <tr>
-      <td>0x0A</td>
-      <td>游戏</td>
-      <td>客户端</td>
-      <td>Entity ID</td>
-      <td>VarInt</td>
-      <td>玩家ID</td>
-   </tr>
-   <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Location</td>
-      <td>Position</td>
-      <td>床头部分的方块的所在位置</td>
-   </tr>
-   <tr>
-   </tr>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th>字段名</th>
+    <th>字段类别</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td rowspan="2">0x0A</td>
+    <td rowspan="2">游戏</td>
+    <td rowspan="2">客户端</td>
+    <td>Entity ID</td>
+    <td>VarInt</td>
+    <td>玩家ID</td>
+  </tr>
+  <tr>
+    <td>Location</td>
+    <td>Position</td>
+    <td>床头部分的方块的所在位置</td>
+  </tr>
 </table>
 
-##动作
+##  动作
 发送任何一个实体都将改变动作。
 <table>
    <tr>
@@ -531,7 +526,7 @@
    </tr>
 </table>
 
-##生成玩家
+##  生成玩家
 这个包会在玩家到达可见区域发送，**不是**在玩家加入时发送。
 服务器可以，然而，安全的不在可见范围内生成玩家实体。 客户端将会正确控制它。
 当服务器的online-mode（正版模式），UUID必须有效而且要有有效的皮肤，在离线模式下需要UUID v3。
@@ -601,7 +596,7 @@
 
 **如果没有元数据发送客户端将崩溃**
 
-##捡拾物品
+##  捡拾物品
 服务器将在玩家捡起一个落在地上的物品时发出这个包。 -这个包的意义是向你展示这个东西飞向你。它不会摧毁客户端实体占用的的内存。 而且它不会加到你的背包中。服务器只会在每次客户端发送的玩家位置坐标[以及玩家的位置和所看的方向]发生改变后检查物品是否捡起。
 
 <table>
@@ -628,7 +623,7 @@
   </tr>
 </table>
 
-##生成对象
+##  生成对象
 当服务端生成一个实体/交通工具时发送。
 
 <table>
@@ -685,7 +680,7 @@
   </tr>
 </table>
 
-##生成生物
+##  生成生物
 当服务端生成一个生物实体的时候发送。
 
 <table>
@@ -762,7 +757,7 @@
   </tr>
 </table>
 
-##生成画
+##  生成画
 这个包含有坐标，名称，以及画的类型。
 计算一个画框的中心可以这样：指定一个(宽x高)的格子，以(0,0)点作为左上角，中心则为(max(0, 宽 / 2 - 1), 高 / 2)。例如：2x1 (1, 0) 4x4 (1, 2)
 
@@ -800,7 +795,7 @@
   </tr>
 </table>
 
-##生成经验球
+##  生成经验球
 生成一个或多个经验球。
 
 <table>
@@ -842,7 +837,7 @@
   </tr>
 </table>
 
-##实体速率
+##  实体速率
 速度是以1/8000方块每刻（tick,1tick=50ms）；例如，-1343将会移动(-1343 / 8000) = −0.167875每刻（或-3,3575方块每秒）
 <table>
   <tr>
@@ -877,7 +872,7 @@
     <td>Z轴上的速度</td>
   </tr>
 </table>
-##破坏实体
+##  破坏实体
 服务端在一列实体被客户端破坏时发送。
 <table>
   <tr>
@@ -902,7 +897,7 @@
     <td>破坏的实体的列表</td>
   </tr>
 </table>
-##实体
+##  实体
 大多数与实体相关的数据包是这个包的一个小类别。当从服务器发送到客户端时，它将初始化实体。
 对玩家实体而言，这个包或其他任何移动/改变视点包都是每一刻(tick)会发送的。 所以这个包存在的基本意义是服务器收到实体的包后才会移动/改变视点。
 
@@ -924,7 +919,7 @@
     <td>实体ID</td>
   </tr>
 </table>
-##实体相对运动
+##  实体相对运动
 服务器将会在实体移动距离小于4个方块时发送；如果一个实体移动距离大于4个方块，服务器将会发送实体传送而不是实体相对移动。
 这个数据包允许任意方向不超过四个方向的移动，因为字节的范围是从-128到127。
 <table>
@@ -966,7 +961,7 @@
   </tr>
 </table>
 
-##实体视点
+##  实体视点
 这个数据包服务器在实体转向时发送。例如：偏航(yaw)字段值为64意为转90度。
 <table>
   <tr>
@@ -1001,7 +996,7 @@
     <td></td>
   </tr>
 </table>
-##实体相对移动并且视点改变
+##  实体相对移动并且视点改变
 这个数据包服务器在实体旋转且移动的时候发送。由于字节的范围限制在-128到127， 偏移量为定点小数，这个数据包允许任意方向最多四个方块距离的移动 (-128/32 == -4)。
 <table>
   <tr>
@@ -1051,7 +1046,7 @@
     <td></td>
   </tr>
 </table>
-##实体传送
+##  实体传送
 这个数据包服务器在实体移动距离超过四个方块时发送。
 <table>
   <tr>
@@ -1101,7 +1096,7 @@
     <td></td>
   </tr>
 </table>
-##实体头部移动
+##  实体头部移动
 改变实体面朝方向。
 <table>
   <tr>
@@ -1126,7 +1121,7 @@
     <td>头偏航值以2p/256记</td>
   </tr>
 </table>
-##实体状态
+##  实体状态
 <table>
   <tr>
     <th>包标识符</th>
@@ -1179,7 +1174,7 @@
 |23	|禁用玩家的调试屏幕
 
 
-##依附实体
+##  依附实体
 这个数据包在玩家衣服于一个实体时发送。（例如矿车）
 <table>
   <tr>
@@ -1209,7 +1204,7 @@
     <td>如果为true将绑定实体于交通工具上</td>
   </tr>
 </table>
-##实体元数据
+##  实体元数据
 <table>
   <tr>
     <th>包标识符</th>
@@ -1234,7 +1229,7 @@
   </tr>
 </table>
 
-##实体药水效果
+##  实体药水效果
 <table>
   <tr>
     <th>包标识符</th>
@@ -1260,7 +1255,7 @@
   <tr>
     <td>Amplifier</td>
     <td>Byte</td>
-    <td>Notch的客户端显示药水效果等级为 Amplifier + 1</td>
+    <td>Notchian client显示药水效果等级为 Amplifier + 1</td>
   </tr>
   <tr>
     <td>Duration</td>
@@ -1273,7 +1268,7 @@
     <td></td>
   </tr>
 </table>
-##移除实体药水效果
+##  移除实体药水效果
 <table>
   <tr>
     <th>包标识符</th>
@@ -1297,7 +1292,7 @@
     <td></td>
   </tr>
 </table>
-##设置经验
+##  设置经验
 服务器在客户端应该更改经验等级的时候发送。
 <table>
   <tr>
@@ -1327,7 +1322,7 @@
     <td></td>
   </tr>
 </table>
-##实体设置
+##  实体设置
 <table>
   <tr>
     <th>包标识符</th>
@@ -1468,7 +1463,7 @@
     <td></td>
   </tr>
 </table>
-##区块数据
+##  区块数据
 区块不会由客户端自动卸载。如需卸载区块，发送含有 ground-up continuous=true 并且没有 16^3 区块的数据包（如primary bit mask=0）。服务器不会发送下界地图区块的光照信息，这使得客户端知道玩家正处于下界。你也可以通过主位掩码和发送的未压缩的字节数的数量来推断这些信息。
 请参阅：[SMP地图格式](http://wiki.vg/SMP_Map_Format)
 
@@ -1526,7 +1521,7 @@
 </table>
 
 
-##多个方块更新
+##  多个方块更新
 <table>
   <tr>
     <th>包标识符</th>
@@ -1567,9 +1562,9 @@
 00 FF	|8 bits	|Y坐标
 0F 00	|4 bits	|Z坐标，与区块有关
 F0 00	|4 bits	|X坐标，与区块有关
- ?	|VarInt	|方块ID
- 
-##方块更新
+ ?	|VarInt	|方块ID
+ 
+##  方块更新
 <table>
   <tr>
     <th>包标识符</th>
@@ -1593,7 +1588,7 @@ F0 00	|4 bits	|X坐标，与区块有关
     <td>新方块的ID id &lt;&lt; 4 | data</td>
   </tr>
 </table>
-##方块表现
+##  方块表现
 这个数据包将会用于以下情况：
 
  - 箱子的大开恶化关闭
@@ -1646,7 +1641,7 @@ F0 00	|4 bits	|X坐标，与区块有关
   </tr>
 </table>
 
-##方块破坏动画
+##  方块破坏动画
 
 0-9将显示方块的破坏程度，其他数字意为这个坐标上没有动画。.
 你也可以对空气方块设置动画！破坏动画仍然可见！
@@ -1682,7 +1677,7 @@ F0 00	|4 bits	|X坐标，与区块有关
   </tr>
 </table>
 
-##地图区块传送
+##  地图区块传送
 请参阅：[SMP地图格式](http://wiki.vg/SMP_Map_Format)
 
 1.8版的改变在：[区块数据](#区块数据)
@@ -1747,7 +1742,7 @@ F0 00	|4 bits	|X坐标，与区块有关
   </tr>
 </table>
 
-##爆炸
+##  爆炸
 当爆炸发生的时候发送（爬行者，TNT，恶魂的火球）
 每个方块的记录都将被设置为空气。每个轴上的坐标信息将会以 int(X) + record.x 来记录
 <table>
@@ -1809,7 +1804,7 @@ F0 00	|4 bits	|X坐标，与区块有关
   </tr>
 </table>
 
-##效果
+##  效果
 在客户端产生声音或者药水效果的时候发出。
 默认，minecraft客户端通过距离来调整声音效果的音量。最终由布尔值来禁用它后，声音将会由你当前方向前两个方块发出。现在这个只能用于影响1013(mob.wither.spawn)，而且会被客户端的其他任意值忽略。
 
@@ -1985,7 +1980,7 @@ F0 00	|4 bits	|X坐标，与区块有关
     <td>西北</td>
   </tr>
 </table>
-##音效
+##  音效
 用来播放客户端中的音效
 所有已知的音效名可以在[这里](https://github.com/SirCmpwn/Craft.Net/blob/master/source/Craft.Net.Common/SoundEffect.cs)查到。
 资源包中可能会加入自定义声音。
@@ -2032,3 +2027,830 @@ F0 00	|4 bits	|X坐标，与区块有关
     <td>63代表100%，可以更大</td>
   </tr>
 </table>
+
+##  颗粒
+显示已命名的颗粒
+<table>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th>字段名</th>
+    <th>字段类别</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td rowspan="11">0x2A</td>
+    <td rowspan="11">游戏</td>
+    <td rowspan="11">客户端</td>
+    <td>Particle Id</td>
+    <td>Int</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Long Distance</td>
+    <td>Boolean</td>
+    <td>如为true, 颗粒距离将会从256增加到65536.</td>
+  </tr>
+  <tr>
+    <td>X</td>
+    <td>Float</td>
+    <td>颗粒的X坐标</td>
+  </tr>
+  <tr>
+    <td>Y</td>
+    <td>Float</td>
+    <td>颗粒的Y坐标</td>
+  </tr>
+  <tr>
+    <td>Z</td>
+    <td>Float</td>
+    <td>颗粒的Z坐标</td>
+  </tr>
+  <tr>
+    <td>Offset X</td>
+    <td>Float</td>
+    <td>这是添加到被random.nextGaussian()乘以后的X的位置</td>
+  </tr>
+  <tr>
+    <td>Offset Y</td>
+    <td>Float</td>
+    <td>这是添加到被random.nextGaussian()乘以后的Y的位置</td>
+  </tr>
+  <tr>
+    <td>Offset Z</td>
+    <td>Float</td>
+    <td>这是添加到被random.nextGaussian()乘以后的Z的位置</td>
+  </tr>
+  <tr>
+    <td>Particle data</td>
+    <td>Float</td>
+    <td>The data of each particle</td>
+  </tr>
+  <tr>
+    <td>Number of particles</td>
+    <td>Int</td>
+    <td>所生产的颗粒的数量</td>
+  </tr>
+  <tr>
+    <td>Data</td>
+    <td>Array of VarInt</td>
+    <td>长度基于颗粒类型. ICON_CRACK, BLOCK_CRACK, 和 BLOCK_DUST 长度为2, 其他的长度为0。</td>
+  </tr>
+</table>
+
+颗粒ID表
+<table>
+  <tr>
+    <th>颗粒名</th>
+    <th>颗粒Id</th>
+  </tr>
+  <tr>
+    <td>explode</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>largeexplosion</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>hugeexplosion</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>fireworksSpark</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>bubble</td>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td>wake</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>splash</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <td>suspended</td>
+    <td>7</td>
+  </tr>
+  <tr>
+    <td>townaura</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>crit</td>
+    <td>9</td>
+  </tr>
+  <tr>
+    <td>magicCrit</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>smoke</td>
+    <td>11</td>
+  </tr>
+  <tr>
+    <td>largesmoke</td>
+    <td>12</td>
+  </tr>
+  <tr>
+    <td>mobSpell?</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <td>instantSpell</td>
+    <td>14</td>
+  </tr>
+  <tr>
+    <td>spell</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>witchMagic</td>
+    <td>17</td>
+  </tr>
+  <tr>
+    <td>dripWater</td>
+    <td>18</td>
+  </tr>
+  <tr>
+    <td>dripLava</td>
+    <td>19</td>
+  </tr>
+  <tr>
+    <td>angryVillager</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>happyVillager</td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <td>depthsuspend</td>
+    <td>22</td>
+  </tr>
+  <tr>
+    <td>note</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <td>portal</td>
+    <td>24</td>
+  </tr>
+  <tr>
+    <td>enchantmenttable</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>flame</td>
+    <td>26</td>
+  </tr>
+  <tr>
+    <td>lava</td>
+    <td>27</td>
+  </tr>
+  <tr>
+    <td>footstep</td>
+    <td>28</td>
+  </tr>
+  <tr>
+    <td>cloud</td>
+    <td>29</td>
+  </tr>
+  <tr>
+    <td>reddust</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <td>snowballpoof</td>
+    <td>31</td>
+  </tr>
+  <tr>
+    <td>snowshovel</td>
+    <td>32</td>
+  </tr>
+  <tr>
+    <td>slime</td>
+    <td>33</td>
+  </tr>
+  <tr>
+    <td>heart</td>
+    <td>34</td>
+  </tr>
+  <tr>
+    <td>barrier</td>
+    <td>35</td>
+  </tr>
+</table>
+
+##  修改游戏状态
+这将在床不可作为出生点或下雨状态改变的时候使用。
+The class has an array of strings linked to reason codes 0, 1, 2, and 3 but only the codes for 1 and 2 are null.
+<table>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th>字段名</th>
+    <th>字段类别</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td rowspan="2">0x2B</td>
+    <td rowspan="2">游戏</td>
+    <td rowspan="2">客户端</td>
+    <td>Reason</td>
+    <td>Unsigned Byte</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Value</td>
+    <td>Float</td>
+    <td>依原因而定</td>
+  </tr>
+</table>
+##  生成全局实体
+通过这个包，服务端可以通知客户端玩家半径512范围内有雷。坐标会指定雷击中的具体坐标。
+<table>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th>字段名</th>
+    <th>字段类别</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td rowspan="5">0x2C</td>
+    <td rowspan="5">游戏</td>
+    <td rowspan="5">客户端</td>
+    <td>Entity ID</td>
+    <td>VarInt</td>
+    <td>雷的实体ID</td>
+  </tr>
+  <tr>
+    <td>Type</td>
+    <td>Byte</td>
+    <td>全局实体类型，当前一直都是1来表示雷电</td>
+  </tr>
+  <tr>
+    <td>X</td>
+    <td>Int</td>
+    <td>雷电X坐标的定点小数</td>
+  </tr>
+  <tr>
+    <td>Y</td>
+    <td>Int</td>
+    <td>雷电Y坐标的定点小数</td>
+  </tr>
+  <tr>
+    <td>Z</td>
+    <td>Int</td>
+    <td>雷电Z坐标的定点小数</td>
+  </tr>
+</table>
+##  打开窗口
+这个包会在打开背包的时候发送给客户端，比如打开箱子、工作台或熔炉。这个信息在任何时候都发送使客户端打开玩家自己的背包的包。
+<table>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th>字段名</th>
+    <th>字段类别</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td rowspan="5">0x2D</td>
+    <td rowspan="5">游戏</td>
+    <td rowspan="5">客户端</td>
+    <td>Window id</td>
+    <td>Unsigned Byte</td>
+    <td>显示的窗口的唯一ID。 Notchian server 实例是一个从1开始的计数器。</td>
+  </tr>
+  <tr>
+    <td>Inventory Type</td>
+    <td>String</td>
+    <td>用于显示的窗口类型，详情见下文</td>
+  </tr>
+  <tr>
+    <td>Window title</td>
+    <td>Chat</td>
+    <td>窗口标题</td>
+  </tr>
+  <tr>
+    <td>Number of Slots</td>
+    <td>Unsigned Byte</td>
+    <td>窗口中的栏位数量（玩家背包的栏位除外）</td>
+  </tr>
+  <tr>
+    <td>Entity ID</td>
+    <td>Int</td>
+    <td>马的实体ID，只有当窗口类型等于"EntityHorse"时适用。</td>
+  </tr>
+</table>
+请参阅[背包窗口](http://wiki.vg/Inventory#Windows)获取更多信息。
+
+##  关闭窗口
+当窗口被强制关闭时，这个包会由服务端发送给客户端，比如打开着的箱子被破坏。
+<table>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th>字段名</th>
+    <th>字段类别</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td>0x2E</td>
+    <td>游戏</td>
+    <td>客户端</td>
+    <td>Window ID</td>
+    <td>Unsigned Byte</td>
+    <td>被关闭的窗口ID，0表示背包。</td>
+  </tr>
+</table>
+##  栏位数据设置
+服务端在一个槽位的东西被增加/移除的时候发送。
+<table>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th>字段名</th>
+    <th>字段类别</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td rowspan="3">0x2F</td>
+    <td rowspan="3">游戏</td>
+    <td rowspan="3">客户端</td>
+    <td>Window ID</td>
+    <td>Byte</td>
+    <td>被更新的窗口的窗口ID，0表示玩家背包。注意包括玩家背包的所有已知背包，即使会影响玩家的背包，这个数据包只会在玩家打开着窗口并且进行操作的时候发送。当窗口关闭后，大量这类包将发送来更新玩家的背包窗口(0)。</td>
+  </tr>
+  <tr>
+    <td>Slot</td>
+    <td>Short</td>
+    <td>所更新的栏位</td>
+  </tr>
+  <tr>
+    <td>Slot data</td>
+    <td>Slot</td>
+    <td></td>
+  </tr>
+</table>
+
+##  窗口物品
+服务端在窗口中的一个栏位的物品被增加/移除的时候发送。这包括主背包，携带装备以及合成栏位。
+![image](http://wiki.vg/images/1/13/Inventory-slots.png)
+<table>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th>字段名</th>
+    <th>字段类别</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td rowspan="3">0x30</td>
+    <td rowspan="3">游戏</td>
+    <td colspan="2" rowspan="3">客户端</td>
+    <td>Unsigned Byte</td>
+    <td>被更改的物品所对应的窗口ID。0表示玩家背包。</td>
+  </tr>
+  <tr>
+    <td>Short</td>
+    <td>栏位数（见下图）</td>
+  </tr>
+  <tr>
+    <td>Array ofSlots</td>
+    <td></td>
+  </tr>
+</table>
+请参阅[背包窗口](http://wiki.vg/Inventory#Windows)获得更多关于背包索引的信息。
+##  背包状态
+<table>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th>字段名</th>
+    <th>字段类别</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td rowspan="3">0x31</td>
+    <td rowspan="3">游戏</td>
+    <td rowspan="3">客户端</td>
+    <td>Window ID</td>
+    <td>Unsigned Byte</td>
+    <td>窗口的ID</td>
+  </tr>
+  <tr>
+    <td>Property</td>
+    <td>Short</td>
+    <td>将会被更新的状态类型</td>
+  </tr>
+  <tr>
+    <td>Value</td>
+    <td>Short</td>
+    <td>新状态值</td>
+  </tr>
+</table>
+**熔炉**
+属性：
+
+ - 0：进展箭头
+ - 1：火图标（燃料）
+值：
+ - 0-200表示进展箭头
+ - 0-200表示燃料指示
+范围大约是游戏里的刻（tick）
+**附魔台**
+属性：0，1，2基于所给的“附魔栏位“（enchantment slot）。
+值：附魔等级。
+**信标**
+ - 0：能量等级
+ - 1：药水效果1
+ - 2：药水效果2
+**铁砧**
+ - 0：最大消耗
+**酿造台**
+ - 0：酿造时间
+酿造时间值大小范围为0到400，400表示空箭头，0表示满箭头
+
+##  确认事物
+服务端发这个包来确认请求是否被客户端所接受，或是否存在冲突（因为服务器卡顿造成的） 这个包也可以被客户端发送到服务端来回应服务端拒绝事物包。
+<table>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th>字段名</th>
+    <th>字段类别</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td rowspan="3">0x32</td>
+    <td rowspan="3">游戏</td>
+    <td rowspan="3">客户端</td>
+    <td>Window ID</td>
+    <td>Byte</td>
+    <td>行为发生的窗口的窗口ID</td>
+  </tr>
+  <tr>
+    <td>Action number</td>
+    <td>Short</td>
+    <td>每一个可被接受的动作都有一个独有的数字。这个字段即对应着这些数字</td>
+  </tr>
+  <tr>
+    <td>Accepted</td>
+    <td>Bool</td>
+    <td>行为是否被接受。</td>
+  </tr>
+</table>
+##  更新牌子
+这个信息服务端在牌子被覆盖或创建的时候发送给客户端。这信息不会再牌子被损坏或者卸载的时候发送。
+<table>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th>字段名</th>
+    <th>字段类别</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td>0x33</td>
+    <td>游戏</td>
+    <td>客户端</td>
+    <td>Location</td>
+    <td>Position</td>
+    <td>方块坐标</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Line 1</td>
+    <td>Chat</td>
+    <td>牌子第一行的内容</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Line 2</td>
+    <td>Chat</td>
+    <td>牌子第二行的内容</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Line 3</td>
+    <td>Chat</td>
+    <td>牌子第三行的内容</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Line 4</td>
+    <td>Chat</td>
+    <td>牌子第四行的内容</td>
+  </tr>
+</table>
+##  地图
+<table>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th>字段名</th>
+    <th>字段类别</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td rowspan="10">0x34</td>
+    <td rowspan="10">游戏</td>
+    <td rowspan="10">客户端</td>
+    <td>Item Damage</td>
+    <td>VarInt</td>
+    <td>地图正在更改部分的伤害值</td>
+  </tr>
+  <tr>
+    <td>Scale</td>
+    <td>Byte</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Length</td>
+    <td>VarInt</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Icons</td>
+    <td>3 * length bytes</td>
+    <td>第一字节, 0xF0 = Direction, 0x0F = Type. 第二字节, X. 第三字节, Y</td>
+  </tr>
+  <tr>
+    <td>Columns</td>
+    <td>Byte</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Rows</td>
+    <td>Byte</td>
+    <td>只有列超过0时才可以</td>
+  </tr>
+  <tr>
+    <td>X</td>
+    <td>Byte</td>
+    <td>只有列超过0时才可以</td>
+  </tr>
+  <tr>
+    <td>Y</td>
+    <td>Byte</td>
+    <td>只有列超过0时才可以</td>
+  </tr>
+  <tr>
+    <td>Length</td>
+    <td>VarInt</td>
+    <td>只有列超过0时才可以</td>
+  </tr>
+  <tr>
+    <td>Data</td>
+    <td>Length bytes</td>
+    <td>只有列超过0时才可以</td>
+  </tr>
+</table>
+
+##  更新方块实体
+从本质上来说一个方块的更新是一个方块实体的更新。
+<table>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th>字段名</th>
+    <th>字段类别</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td rowspan="3">0x35</td>
+    <td rowspan="3">游戏</td>
+    <td rowspan="3">客户端</td>
+    <td>Location</td>
+    <td>Position</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Action</td>
+    <td>Unsigned Byte</td>
+    <td>执行的更新类型</td>
+  </tr>
+  <tr>
+    <td>NBT Data</td>
+    <td>Byte Array</td>
+    <td>如果不呈现则为 TAG_END (0)</td>
+  </tr>
+</table>
+**行为**
+
+ - 1：设置刷怪笼的刷怪概率
+ - 2：设置命令方块文本（命令和最后执行的状态）
+ - 3：设置信标的等级，第一效果和第二效果
+ - 4：设置生物的头的方向和皮肤
+ - 5：设置花盆上的花类型
+ - 6：设置气质的基本颜色和样式
+##  打开木牌编辑窗
+在放置牌子的时候发送。
+<table>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th>字段名</th>
+    <th>字段类别</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td>0x36</td>
+    <td>游戏</td>
+    <td>客户端</td>
+    <td>Location</td>
+    <td>Position</td>
+    <td>方块坐标</td>
+  </tr>
+</table>
+##  统计信息
+<table>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th colspan="2">字段名</th>
+    <th>字段类别</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td rowspan="3">0x37</td>
+    <td rowspan="3">游戏</td>
+    <td rowspan="3">客户端</td>
+    <td colspan="2">Count</td>
+    <td>VarInt</td>
+    <td>实体数量</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Entry</td>
+    <td>Statistic's name</td>
+    <td>String</td>
+    <td><a href="https://gist.github.com/thinkofdeath/a1842c21a0cf2e1fb5e0">https://gist.github.com/thinkofdeath/a1842c21a0cf2e1fb5e0</a>https://gist.github.com/thinkofdeath/a1842c21a0cf2e1fb5e0</td>
+  </tr>
+  <tr>
+    <td>Value</td>
+    <td>VarInt</td>
+    <td>发送的数量</td>
+  </tr>
+</table>
+##  玩家列表
+notchian服务器在用户列表更新的时候发送（客户端的<tab>键列表）
+<table>
+  <tr>
+    <th>包标识符</th>
+    <th>类别</th>
+    <th>绑定到</th>
+    <th colspan="3">字段名</th>
+    <th>字段类型</th>
+    <th>备注</th>
+  </tr>
+  <tr>
+    <td rowspan="19">0x38</td>
+    <td rowspan="19">游戏</td>
+    <td rowspan="19">客户端</td>
+    <td colspan="3">Action</td>
+    <td>VarInt</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="3">Length</td>
+    <td>VarInt</td>
+    <td>The following fields are repeatedlength times</td>
+  </tr>
+  <tr>
+    <td colspan="3">UUID</td>
+    <td>UUID</td>
+    <td>玩家的UUID</td>
+  </tr>
+  <tr>
+    <td>Action</td>
+    <td colspan="4"></td>
+  </tr>
+  <tr>
+    <td rowspan="10">0 (ADD_PLAYER)</td>
+    <td colspan="2">Name</td>
+    <td>String</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="2">Number of properties</td>
+    <td>VarInt</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td rowspan="4">Properties</td>
+    <td>Name</td>
+    <td>String</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Value</td>
+    <td>String</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Is Signed</td>
+    <td>Boolean</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Signature</td>
+    <td>String</td>
+    <td>只有已签名的时候为true</td>
+  </tr>
+  <tr>
+    <td colspan="2">Gamemode</td>
+    <td>VarInt</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="2">Ping</td>
+    <td>VarInt</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="2">Has Display Name</td>
+    <td>Boolean</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="2">Display Name</td>
+    <td>Chat</td>
+    <td>只有当Has Display Name为true的时候发送</td>
+  </tr>
+  <tr>
+    <td>1 (UPDATE_GAMEMODE)</td>
+    <td colspan="2">Gamemode</td>
+    <td>VarInt</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>2 (UPDATE_LATENCY)</td>
+    <td colspan="2">Ping</td>
+    <td>VarInt</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td rowspan="2">3 (UPDATE_DISPLAY_NAME)</td>
+    <td colspan="2">Has Display Name</td>
+    <td>Boolean</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="2">Display Name</td>
+    <td>Chat</td>
+    <td>只有当Has Display Name为true的时候发送</td>
+  </tr>
+  <tr>
+    <td>4 (REMOVE_PLAYER)</td>
+    <td colspan="2"></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+##  玩家能力
+##  玩家能力
+##  Tab补全
+##  计分板容器
+##  更新积分
+##  显示计分板
+##  队伍
+##  插件信息
+##  断开连接
+##  服务器难度
+##  格斗事件
+##  相机
+##  世界边框
+##  标题
+##  设置压缩
+##  玩家列表首尾
+##  发送资源包
+##  更新实体NBT
