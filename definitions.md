@@ -129,18 +129,19 @@ y = (val >> 26) & 0xFFF
 z = val << 38 >> 38
 ```
 ## 定点小数
-一些数据是以[定点小数](https://en.wikipedia.org/wiki/Fixed-point_arithmetic)存储的, where a certain number of bits represents the signed integer part (number to the left of the decimal point) and the rest represents the fractional part (to the right). Floating points (float and double), in contrast, keep the number itself (mantissa) in one chunk, while the location of the decimal point (exponent) is stored beside it.
 
-基本上，定点小数比浮点数有更小的范围，它分数展示对更高的值有利。这使得他们 ideal for representing global coordinates of an entity in Minecraft, as it's more important to store the integer part accurately than position them more precisely within a single block (or meter).
+一些数据是以[定点小数](https://en.wikipedia.org/wiki/Fixed-point_arithmetic)存储的, 前面几位数表示整数部分 (小数点左边的数字) 剩下的部分表示小数部分（小数点右边的）。相比之下浮点数（浮点和双精度）保存自身的数字（尾数）在一个区块中，小数点的位置 (幂)则存在它旁边。
+
+基本上，定点小数比浮点数有更小的范围，它分数展示对更高的值有利。这使得他们很完美的全局用坐标表示minecraft实体的位置，在一个单独的方块（或meter）中，准确存储其整数部分比定位它们更重要。
 
 坐标一般以一个32位整数显示，前面五位是分数部分，剩下存储的是整数部分。
 
-Java缺乏对分数整数的支持，但你可以以整数形式显示它们。To convert from a double转为整数形式，可以用以下公式：
+Java缺乏对分数整数的支持，但你可以以整数形式显示它们。若要将双精浮点数转为整数形式，可以用以下公式：
 
 ```
  abs_int = (int)double * 32;
  ```
-And back again:
+也可以通过以下公式算回来：
 ```
  double = (double)abs_int / 32;
 ```
@@ -172,3 +173,28 @@ And back again:
 </table>
 
 ## 其他定义
+<table>
+  <tr>
+    <th>Term</th>
+    <th>定义</th>
+  </tr>
+  <tr>
+    <td>Player</td>
+    <td>在单独使用时，玩家总是倾向客户端连接到服务器。</td>
+  </tr>
+  <tr>
+    <td>Entity</td>
+    <td>实体课指代任何物品，玩家，生物，矿车，船等等。请参阅<a href="http://minecraft.gamepedia.com/Entity">Minecraft Wiki的文章</a>上的完整列表。</td>
+  </tr>
+  <tr>
+    <td>EID</td>
+    <td>一个EID，或实体ID，是一个用来指定实体的四字节数列。每个实体的EID在整个服务器上是独立的。</td>
+  </tr>
+  <tr>
+    <td>XYZ</td>
+    <td>在这个文档中，坐标轴显示的名称和在调试窗口（F3）中看到的相同，Y表示上，X表示东，Z表示南。</td>
+  </tr>
+  <tr>
+    <td colspan="2">请参考：<a href="http://wiki.vg/Units_of_Measurement">测量单位</a></td>
+  </tr>
+</table>
